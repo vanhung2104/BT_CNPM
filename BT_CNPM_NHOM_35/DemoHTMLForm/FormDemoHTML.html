@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Nhập Thông Tin Nhân Viên</title>
+    <style>
+        /* Reset mặc định của các thẻ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Container của form */
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Label và input */
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: #555;
+        }
+
+        input[type="text"], input[type="date"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="text"]:focus, input[type="date"]:focus {
+            border-color: #3c8dbc;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #3c8dbc;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #367fa9;
+        }
+
+        fieldset {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        legend {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .checkbox-list label {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        /* Nút thêm sở thích */
+        .add-hobby-btn {
+            background-color: #5cb85c;
+            margin-top: 10px;
+        }
+
+        .add-hobby-btn:hover {
+            background-color: #4cae4c;
+        }
+
+        /* Nút submit */
+        .submit-btn {
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Nhập Thông Tin Nhân Viên</h2>
+        <form id="employeeForm">
+            <!-- Họ và tên -->
+            <label for="fullname">Họ và tên:</label>
+            <input type="text" id="fullname" name="fullname" placeholder="Nhập họ và tên" required>
+
+            <!-- Ngày sinh với lịch chọn -->
+            <label for="dob">Ngày sinh:</label>
+            <input type="date" id="dob" name="dob"  required>
+            <!-- Sở thích trong khung -->
+            <fieldset>
+                <legend>Sở thích</legend>
+                <div class="checkbox-list" id="hobbies-list">
+                    <label><input type="checkbox" name="hobbies" value="Thể thao"> Thể thao</label>
+                    <label><input type="checkbox" name="hobbies" value="Đọc sách"> Đọc sách</label>
+                    <label><input type="checkbox" name="hobbies" value="Du lịch"> Du lịch</label>
+                </div>
+                <button type="button" class="add-hobby-btn" onclick="addNewHobby()">Thêm sở thích</button>
+            </fieldset>
+
+            <!-- Nút thêm nhân viên -->
+            <button type="submit" class="submit-btn">Thêm nhân viên</button>
+        </form>
+    </div>
+
+    <script>
+        function addNewHobby() {
+            const hobby = prompt("Nhập sở thích mới:");
+            if (hobby) {
+                const hobbiesList = document.getElementById('hobbies-list');
+                const newHobby = document.createElement('label');
+                newHobby.innerHTML = `<input type="checkbox" name="hobbies" value="${hobby}"> ${hobby}`;
+                hobbiesList.appendChild(newHobby);
+            }
+        }
+    </script>
+</body>
+</html>
